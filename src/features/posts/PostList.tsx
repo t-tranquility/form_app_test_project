@@ -59,9 +59,9 @@ const PostList = () => {
   }
 
   return (
-    <div className='px-28 py-12'>
+    <div className='p-12 '>
       <h1>Posts</h1>
-      <div className='flex flex-row gap-6 items-center justify-between flex-wrap my-12'>
+      <div className='flex flex-row gap-4 items-center justify-between flex-wrap my-12'>
         {posts.map((post) => (
           <Post
             key={post.id}
