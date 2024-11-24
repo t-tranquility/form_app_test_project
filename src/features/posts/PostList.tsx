@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { PostProps } from '@/shared/types';
 import { Post } from '@/entities/Post';
 import { getPosts, getUsers } from '@/shared/api';
+import useFavoritesStore from '@/shared/useFavoritesStore';
 
 const PostList = () => {
   const [posts, setPosts] = useState<PostProps[]>([]);
   const [users, setUsers] = useState<any[]>([]);
-  const [favorites, setFavorites] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [likesCount, setLikesCount] = useState<{ [key: number]: number }>({});
   const [dislikesCount, setDislikesCount] = useState<{ [key: number]: number }>({});
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+
+  const { favorites, addFavorite, removeFavorite } = useFavoritesStore();
 
   useEffect(() => {
     const getAllPosts = async () => {
@@ -54,11 +56,11 @@ const PostList = () => {
   };
 
   const handleFavorite = (postId: number) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(postId)
-        ? prevFavorites.filter((id) => id !== postId)
-        : [...prevFavorites, postId]
-    );
+    if (favorites.includes(postId)) {
+      removeFavorite(postId);
+    } else {
+      addFavorite(postId);
+    }
   };
 
   const filteredPosts = selectedUserId 
@@ -67,11 +69,11 @@ const PostList = () => {
 
   if (loading) {
     return <div>Loading posts...</div>;
-  }
+  };
 
   if (posts.length === 0) {
     return <div>No posts available</div>;
-  }
+  };
 
   return (
     <div className='p-12'>

@@ -43,11 +43,11 @@ const PostDetail = () => {
 
   if (loading) {
     return <div>Loading post...</div>;
-  }
+  };
 
   if (!post) {
     return <div>Post not found</div>;
-  }
+  };
 
   return (
     <div className='p-12'>

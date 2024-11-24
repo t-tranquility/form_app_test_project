@@ -6,6 +6,7 @@ const PostList = React.lazy(() => import('@features/posts/PostList'));
 const PostDetail = React.lazy(() => import('@features/posts/PostDetail'));
 const UserProfile = React.lazy(() => import('@features/auth/UserProfile'));
 const AdminPanel = React.lazy(() => import('@features/admin/AdminPanel'));
+const Favorites = React.lazy(() => import('@features/posts/Favorites'));
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path="/posts/:id" element={<PostDetail />} />
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/admin" element={<AdminPanel />} />
+                <Route path="/favorites" element={<Favorites />} />
               </Routes>
             </Suspense>
           </main>

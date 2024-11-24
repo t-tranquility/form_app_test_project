@@ -9,6 +9,7 @@ export const SideBar: FC = () => {
                 <Link to="/">Posts</Link>
                 <Link to="/profile">Profile</Link>
                 <Link to="/admin">Admin panel</Link>
+                <Link to="/favorites">Favorites</Link>
             </div> 
         </div>
     );
