@@ -10,6 +10,7 @@ export const createPost = (postData: { title: string; body: string }) => api.pos
 export const deletePost = (id: number) => api.delete(`/posts/${id}`);
 
 export const getUsers = () => api.get('/users');
+export const updateUser = (id: number, userData: any) => api.put(`/users/${id}`, userData);
 
 export const getCommentsByPostId = (postId: number) => api.get(`/posts/${postId}/comments`);
 

@@ -11,7 +11,7 @@ const PostList = () => {
   const [dislikesCount, setDislikesCount] = useState<{ [key: number]: number }>({});
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
-  const { posts } = usePostStore();
+  const { posts, getAllPosts } = usePostStore();
   const { favorites, addFavorite, removeFavorite } = useFavoritesStore();
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const PostList = () => {
     };
 
     fetchUsers();
+    getAllPosts();
     setLoading(false);
   }, []);
 
