@@ -10,6 +10,7 @@ export const SideBar: FC = () => {
                 <Link to="/profile">Profile</Link>
                 <Link to="/admin">Admin panel</Link>
                 <Link to="/favorites">Favorites</Link>
+                <Link to="/post-manager">Post manager</Link>
             </div> 
         </div>
     );

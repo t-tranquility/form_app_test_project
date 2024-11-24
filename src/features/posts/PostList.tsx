@@ -1,31 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { PostProps } from '@/shared/types';
 import { Post } from '@/entities/Post';
-import { getPosts, getUsers } from '@/shared/api';
+import { getUsers } from '@/shared/api';
 import useFavoritesStore from '@/shared/useFavoritesStore';
+import usePostStore from '@/shared/usePostStore';
 
 const PostList = () => {
-  const [posts, setPosts] = useState<PostProps[]>([]);
   const [users, setUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [likesCount, setLikesCount] = useState<{ [key: number]: number }>({});
   const [dislikesCount, setDislikesCount] = useState<{ [key: number]: number }>({});
   const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
 
+  const { posts } = usePostStore();
   const { favorites, addFavorite, removeFavorite } = useFavoritesStore();
 
   useEffect(() => {
-    const getAllPosts = async () => {
-      try {
-        const response = await getPosts();
-        setPosts(response.data);
-      } catch (error) {
-        console.error('Failed to fetch posts:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     const fetchUsers = async () => {
       try {
         const response = await getUsers();
@@ -35,8 +24,8 @@ const PostList = () => {
       }
     };
 
-    getAllPosts();
     fetchUsers();
+    setLoading(false);
   }, []);
 
   const handleLike = (postId: number) => {

@@ -18,3 +18,9 @@ export interface FavoritesStore {
     removeFavorite: (postId: number) => void;
 }
 
+export interface PostStore {
+  posts: PostProps[];
+  getAllPosts: () => Promise<void>;
+  addPost: (post: PostProps) => void;
+  removePost: (postId: number) => void;
+}
