@@ -76,6 +76,7 @@ const UserProfile = () => {
 
   return (
     <div className='p-12'>
+      <Link to="/admin">Admin panel</Link>
       <h1 className='text-2xl font-bold'>{user.name}</h1>
       {isEditing ? (
         <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>

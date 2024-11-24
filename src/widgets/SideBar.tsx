@@ -8,7 +8,6 @@ export const SideBar: FC = () => {
             <div className="flex flex-col gap-8 text-black text-xl my-12">
                 <Link to="/">Posts</Link>
                 <Link to="/profile">Profile</Link>
-                <Link to="/admin">Admin panel</Link>
                 <Link to="/favorites">Favorites</Link>
                 <Link to="/post-manager">Post manager</Link>
             </div> 

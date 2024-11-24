@@ -24,3 +24,20 @@ export interface PostStore {
   addPost: (post: PostProps) => void;
   removePost: (postId: number) => void;
 }
+
+export interface UserItemProps {
+    user: UserProps;
+    onUpdate: (userId: number, updatedData: any) => void;
+}
+
+export interface UserProps {
+    id: number;
+    name: string;
+    email: string;
+    address: {
+      street: string;
+      city: string;
+    };
+    phone: string;
+    website: string;
+}
