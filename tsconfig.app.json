@@ -10,7 +10,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@shared/*": ["src/shared/*"],
-      "@features/*": ["src/features/*"],
+      "@features/*": ["src/pages/*"],
       "@entities/*": ["src/entities/*"],
       "@app/*": ["src/app/*"],
       "@pages/*": ["src/pages/*"],

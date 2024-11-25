@@ -1,50 +1,63 @@
-# React + TypeScript + Vite
+## Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a forum application built with React and TypeScript, leveraging hooks for state and lifecycle management. The app connects to a mock API (JSONPlaceholder) to fetch and manipulate user and post data. The project emphasizes scalability, clean architecture, and responsiveness.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repository:
 
-## Expanding the ESLint configuration
+   ```bash
+   git clone https://github.com/t-tranquility/form_app_test_project.git
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. Install dependencies:
 
-- Configure the top-level `parserOptions` property like this:
+   yarn install
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+3. Start the application:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   yarn dev
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Core Functionality
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Core Functionality
+   Users: View a list of users and their details.
+   Posts:
+     View all posts.
+     Filter posts by user.
+     Open individual posts on a dedicated page, along with their comments.
+     Add comments to posts (client-side only, data resets upon page reload).
+     Create and delete posts.
+     Like or dislike posts.
+     Add posts to "Favorites".
+   User Profile:
+     View and edit user details (name, email, address, etc.).
+   Admin Panel:
+     Admin users can access a dedicated page listing all users, with the ability to edit their details.
+
+## Tech Stack
+
+TypeScript: Ensures type safety and scalability.
+React: A library for building user interfaces with components.
+React Router: Handles application routing.
+Zustand: Lightweight and easy-to-use state management.
+Axios: Simplifies HTTP requests.
+Tailwind CSS: Utility-first CSS framework for fast and modern styling.
+
+## API Integration
+
+This app uses the JSONPlaceholder API for:
+   Users
+   Posts
+   Comments
+Endpoints Used: 
+   Users: /users
+   Posts: /posts
+   Comments: /comments
+
+## Hooks-Only Approach
+This project avoids class components entirely, leveraging React hooks such as:
+   useState and useEffect for local state and side effects.
+   Custom hooks (usePostStore, useFavoritesStore) for centralized state management.
+
+## License
+This project is licensed under the MIT License.

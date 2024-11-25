@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers } from '@/shared/api'; 
 import UserItem from './UserItem';
+import Loader from '@/widgets/Loader';
 
 const AdminPanel = () => {
   const [users, setUsers] = useState<any[]>([]);
@@ -28,13 +29,12 @@ const AdminPanel = () => {
   };
 
   if (loading) {
-    return <div>Loading users...</div>;
-  }
+    return <Loader />;
+  };
 
   return (
-    <div className='p-12'>
-      <h1>Admin Panel</h1>
-      <h2 className='mt-4'>Users List</h2>
+    <div className='p-12 w-full'>
+      <h1 className='text-5xl'>Admin Panel</h1>
       <ul className='my-12'>
         {users.map((user) => (
           <UserItem key={user.id} user={user} onUpdate={handleUpdateUser} />

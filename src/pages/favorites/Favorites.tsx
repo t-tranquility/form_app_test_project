@@ -3,7 +3,7 @@ import { PostProps } from '@/shared/types';
 import { Post } from '@/entities/Post';
 import useFavoritesStore from '@/shared/useFavoritesStore';
 import { getPosts } from '@/shared/api';
-import { Link } from 'react-router-dom';
+import Loader from '@/widgets/Loader';
 
 const Favorites = () => {
   const { favorites } = useFavoritesStore();
@@ -25,8 +25,7 @@ const Favorites = () => {
 
   return (
     <div className='p-12'>
-      <h1>Favorite Posts</h1>
-      <Link to="/" className='text-blue-500'>Back to Posts</Link>
+      <h1 className='text-5xl'>Favorite Posts</h1>
       <div className='flex flex-row gap-4 items-center justify-between flex-wrap my-12'>
         {favoritePosts.length > 0 ? (
           favoritePosts.map((post) => (
@@ -39,7 +38,7 @@ const Favorites = () => {
             />
           ))
         ) : (
-          <div>No favorite posts available</div>
+          <div className='m-auto'>No favorites found</div>
         )}
       </div>
     </div>

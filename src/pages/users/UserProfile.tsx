@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers, updateUser } from '@/shared/api';
 import { Link } from 'react-router-dom';
+import Loader from '@/widgets/Loader';
 
 const UserProfile = () => {
   const [user, setUser] = useState<any | null>(null);
@@ -67,66 +68,68 @@ const UserProfile = () => {
   };
 
   if (loading) {
-    return <div>Loading user...</div>;
-  }
+    return <Loader />;
+  };
 
   if (!user) {
-    return <div>User not found</div>;
-  }
+    return <div className='m-auto'>User not found</div>;
+  };
 
   return (
-    <div className='p-12'>
-      <Link to="/admin">Admin panel</Link>
-      <h1 className='text-2xl font-bold'>{user.name}</h1>
+    <div className='p-12 w-full max-w-max'>
+      <div className='flex flex-col justify-between'>
+        <h1 className='text-5xl'>{user.name}</h1>
+        <Link to="/admin" className='text-xl my-8'>Admin panel</Link>
+      </div>
       {isEditing ? (
-        <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
-          <div className='mt-4'>
+        <form className='mt-0 text-xl flex flex-col gap-6' onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
+          <div>
             <label className='block'>Name:</label>
             <input 
               type="text" 
               name="name" 
               value={formData.name} 
               onChange={handleChange} 
-              className='border p-2 rounded w-full'
+              className='border bg-transparent p-2 rounded w-full'
             />
           </div>
-          <div className='mt-4'>
+          <div>
             <label className='block'>Email:</label>
             <input 
               type="email" 
               name="email" 
               value={formData.email} 
               onChange={handleChange} 
-              className='border p-2 rounded w-full'
+              className='border bg-transparent p-2 rounded w-full'
             />
           </div>
-          <div className='mt-4'>
+          <div>
             <label className='block'>Address:</label>
             <textarea 
               name="address" 
               value={formData.address} 
               onChange={handleChange} 
-              className='border p-2 rounded w-full'
+              className='border bg-transparent p-2 rounded w-full'
             />
           </div>
-          <div className='mt-4'>
+          <div>
             <label className='block'>Phone:</label>
             <input 
               type="text" 
               name="phone" 
               value={formData.phone} 
               onChange={handleChange} 
-              className='border p-2 rounded w-full'
+              className='border bg-transparent p-2 rounded w-full'
             />
           </div>
-          <div className='mt-4'>
+          <div>
             <label className='block'>Website:</label>
             <input 
               type="text" 
               name="website" 
               value={formData.website} 
               onChange={handleChange} 
-              className='border p-2 rounded w-full'
+              className='border bg-transparent p-2 rounded w-full'
             />
           </div>
           <button type="submit" className='mt-4 bg-blue-500 text-white p-2 rounded'>
@@ -134,17 +137,16 @@ const UserProfile = () => {
           </button>
         </form>
       ) : (
-        <>
-          <p className='mt-4'>Email: {user.email}</p>
-          <p className='mt-4'>Address: {user.address ? `${user.address.street}, ${user.address.city}` : 'N/A'}</p>
-          <p className='mt-4'>Phone: {user.phone}</p>
-          <p className='mt-4'>Website: {user.website}</p>
-          <button onClick={() => setIsEditing(true)} className='mt-4 bg-blue-500 text-white p-2 rounded'>
+        <div className='flex flex-col text-xl gap-6'>
+          <p>Email: {user.email}</p>
+          <p>Address: {user.address ? `${user.address.street}, ${user.address.city}` : 'N/A'}</p>
+          <p>Phone: {user.phone}</p>
+          <p>Website: {user.website}</p>
+          <button onClick={() => setIsEditing(true)} className='mt-4 bg-blue-500 w-fit text-white py-2 px-4 rounded'>
             Edit
           </button>
-        </>
+        </div>
       )}
-      <Link to="/" className='text-blue-500 mt-4'>Back to Posts</Link>
     </div>
   );
 };
